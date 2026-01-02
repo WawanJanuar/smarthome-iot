@@ -16,7 +16,7 @@ export default function DashboardPage() {
   const [doorModalOpen, setDoorModalOpen] = useState(false);
   const [doorIsOpen, setDoorIsOpen] = useState(true);
 
-  // ESC untuk close semua popup
+  
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -49,7 +49,6 @@ export default function DashboardPage() {
 
   return (
     <main className="dash">
-      {/* ===== Header ===== */}
       <header className="topbar">
         <button
           className="iconBtn"
@@ -63,7 +62,7 @@ export default function DashboardPage() {
         <div className="address">Jl. Asia No. 138</div>
       </header>
 
-      {/* ===== Content ===== */}
+      {/* konten */}
       <section className="content">
         <h1 className="hello">Hello, steven Putera Wijaya Sok Asik</h1>
 
@@ -128,7 +127,7 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      {/* ===== Sidebar (drawer) ===== */}
+      {/* sidebar */}
       <Sidebar
         open={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
@@ -136,13 +135,13 @@ export default function DashboardPage() {
         onOpenPersonalize={openPersonalize}
       />
 
-      {/* ===== User modal ===== */}
+      {/* usermodal */}
       <UserModal open={userModalOpen} onClose={() => setUserModalOpen(false)} />
 
-      {/* ===== Personalize modal ===== */}
+      {/* personalisasi */}
       <ModeModal open={modeModalOpen} onClose={() => setModeModalOpen(false)} />
 
-      {/* ===== Door modal ===== */}
+      {/* pintu */}
       <DoorModal
         open={doorModalOpen}
         onClose={() => setDoorModalOpen(false)}

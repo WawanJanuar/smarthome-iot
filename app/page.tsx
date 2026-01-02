@@ -5,21 +5,19 @@ export default function Page() {
   return (
     <main className="container">
       <div className="card">
-        {/* LEFT PANEL */}
+        {/* bagian kirinyaL */}
         <div className="left">
           <h2>Welcome Back!</h2>
           <p>
             To keep connected with us, please login <br />
             with your personal information
           </p>
-
-          {/* SIGN IN → LOGIN PAGE */}
           <Link href="/halaman/login" className="btn-outline">
             Sign In
           </Link>
         </div>
 
-        {/* RIGHT PANEL */}
+        {/* container bgn kanan */}
         <div className="right">
           <h1>CREATE ACCOUNT</h1>
 

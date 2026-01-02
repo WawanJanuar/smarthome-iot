@@ -1,4 +1,3 @@
-/* ===== base ===== */
 html,
 body {
   height: 100%;
@@ -11,7 +10,6 @@ body {
   color: #6b6b7a;
 }
 
-/* ===== layout ===== */
 .login-wrap {
   min-height: 100vh;
   background: #f2f2f6;
@@ -22,7 +20,7 @@ body {
 
 .login-topbar {
   width: 100%;
-  height: 70px;              /* garis hijau di atas */
+  height: 70px;
   background: #dfeae1;
 }
 
@@ -35,7 +33,6 @@ body {
   text-align: center;
 }
 
-/* ===== card ===== */
 .login-card {
   width: min(690px, 91vw);
   height: 43vh;
@@ -45,7 +42,6 @@ body {
   box-sizing: border-box;
 }
 
-/* ===== inputs ===== */
 .login-fields {
   display: flex;
   flex-direction: column;
@@ -68,7 +64,6 @@ body {
   font-weight: 600;
 }
 
-/* forgot */
 .login-forgot {
   margin-top: -8px;
   margin-left: 10px;
@@ -82,7 +77,6 @@ body {
   text-decoration: underline;
 }
 
-/* button */
 .login-btn {
   margin-top: 8px;
   height: 64px;
@@ -99,7 +93,6 @@ body {
   filter: brightness(0.98);
 }
 
-/* footer */
 .login-footer {
   margin: 8px 0 0 0;
   text-align: center;
@@ -117,7 +110,6 @@ body {
   text-decoration: underline;
 }
 
-/* responsive */
 @media (max-width: 520px) {
   .login-title {
     font-size: 30px;
