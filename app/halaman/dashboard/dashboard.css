@@ -1,0 +1,165 @@
+:root{
+  --bg:#f2f2f6;
+  --mint:#dfeae1;
+  --card:#d7e6da;
+  --ink:#6f6f84;
+  --muted:#86a6b5;
+  --stroke:#7e9fb0;
+  --shadow: 0 10px 18px rgba(0,0,0,.15);
+}
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{ margin:0; font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif; background:var(--bg); color:var(--ink); }
+
+.dash{ min-height:100vh; }
+
+/* ===== top bar ===== */
+.topbar{
+  height:90px;
+  background:var(--mint);
+  display:flex;
+  align-items:center;
+  padding:0 26px;
+  gap:18px;
+}
+
+.brand{
+  font-size:38px;
+  letter-spacing:8px;
+  font-weight:700;
+}
+
+.address{
+  margin-left:auto;
+  font-size:22px;
+  font-weight:600;
+  opacity:.85;
+}
+
+/* icon button */
+.iconBtn{
+  width:56px;
+  height:56px;
+  border:none;
+  background:transparent;
+  cursor:pointer;
+  display:grid;
+  place-items:center;
+  color:var(--ink);
+}
+
+.hamburger{
+  width:36px;
+  height:26px;
+  position:relative;
+  display:block;
+}
+.hamburger::before,
+.hamburger::after,
+.hamburger{
+  background:transparent;
+}
+.hamburger::before,
+.hamburger::after{
+  content:"";
+  position:absolute;
+  left:0;
+  width:100%;
+  height:6px;
+  background:var(--ink);
+  border-radius:6px;
+  opacity:.8;
+}
+.hamburger::before{ top:0; }
+.hamburger::after{ bottom:0; }
+.hamburger{
+  border-top:6px solid var(--ink);
+  border-radius:6px;
+  opacity:.8;
+}
+
+/* ===== content ===== */
+.content{
+  padding:28px 34px 60px;
+}
+
+.hello{
+  font-size:40px;
+  margin:8px 0 22px;
+  letter-spacing:.5px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(4, minmax(220px, 1fr));
+  gap:26px;
+  align-items:stretch;
+}
+
+/* ===== cards ===== */
+.card{
+  background: var(--card);
+  border:none;
+  border-radius:18px;
+  box-shadow: var(--shadow);
+  padding:18px;
+  text-align:left;
+
+  /* kotak */
+  aspect-ratio: 1 / 1;
+
+  /* layout internal */
+  display:flex;
+  flex-direction:column;
+}
+
+/* top label */
+.cardTop{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color: var(--muted);
+  font-weight:800;
+}
+
+/* icon/title */
+.cardIcon{ font-size:30px; opacity:.8; }
+.cardTitle{ font-size:20px; letter-spacing:.5px; }
+
+/* value CENTER beneran */
+.cardValue{
+  flex: 1;                 /* ambil ruang sisa supaya ada area tengah */
+  display: grid;
+  place-items: center;     /* center horizontal + vertical */
+  text-align:center;
+
+  font-size:74px;
+  letter-spacing:2px;
+  color: var(--stroke);
+  font-weight:800;
+
+  margin: 0;               /* buang margin lama */
+  line-height: 1;
+}
+
+/* pill hot tetap di bawah tengah */
+.pill{
+  width:140px;
+  margin: 0 auto 10px;     /* bawah 10px */
+  background:#f5f5f7;
+  color:var(--muted);
+  border-radius:999px;
+  padding:8px 18px;
+  text-align:center;
+  font-weight:800;
+  box-shadow: 0 6px 12px rgba(0,0,0,.12);
+}
+
+/* active door card */
+.activeCard{
+  background:#5e7f8b;
+}
+.activeCard .cardTitle,
+.activeCard .cardIcon{ color:#dfeae1; }
+.activeCard .cardValue{ color:#a9bac1; }
