@@ -1,9 +1,6 @@
 "use client";
 
-type Props = {
-  open: boolean;
-  onClose: () => void;
-};
+type Props = { open: boolean; onClose: () => void };
 
 export default function ModeModal({ open, onClose }: Props) {
   if (!open) return null;
@@ -11,7 +8,7 @@ export default function ModeModal({ open, onClose }: Props) {
   return (
     <div className="overlay" onClick={onClose}>
       <div
-        className="modal bigText"
+        className="modal modeModal"
         onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"
@@ -21,9 +18,7 @@ export default function ModeModal({ open, onClose }: Props) {
         </button>
 
         <div className="modeTitle">Light Mode</div>
-        <button className="modeLink" type="button">
-          Switch to Dark Mode
-        </button>
+        <div className="modeLink">Switch to Dark Mode</div>
       </div>
     </div>
   );

@@ -1,151 +1,429 @@
+/* =========================
+   Theme / Base
+   ========================= */
 :root{
-  --bg:#f2f2f6;
-  --mint:#dfeae1;
-  --card:#d7e6da;
-  --ink:#6f6f84;
-  --muted:#86a6b5;
-  --stroke:#7e9fb0;
-  --shadow: 0 10px 18px rgba(0,0,0,.15);
+  --bg: #f2f2f6;
+  --topbar: #dfeae1;
+  --card: #d9eadc;
+  --stroke: #7a8b94;
+  --muted: rgba(122,139,148,.75);
+  --shadow: 0 14px 22px rgba(0,0,0,.18);
 }
 
-*{ box-sizing:border-box; }
-html,body{ height:100%; }
-body{ margin:0; font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif; background:var(--bg); color:var(--ink); }
+*{ box-sizing: border-box; }
 
-.dash{ min-height:100vh; }
+html, body{ height: 100%; }
 
+body{
+  margin: 0;
+  background: var(--bg);
+  color: var(--stroke);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* =========================
+   Page Layout
+   ========================= */
+.dash{
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+/* =========================
+   Topbar
+   ========================= */
 .topbar{
-  height:90px;
-  background:var(--mint);
-  display:flex;
-  align-items:center;
-  padding:0 26px;
-  gap:18px;
-}
-
-.brand{
-  font-size:38px;
-  letter-spacing:8px;
-  font-weight:700;
-}
-
-.address{
-  margin-left:auto;
-  font-size:22px;
-  font-weight:600;
-  opacity:.85;
+  height: 90px;
+  background: var(--topbar);
+  display: flex;
+  align-items: center;
+  padding: 0 36px;
+  gap: 22px;
 }
 
 .iconBtn{
-  width:56px;
-  height:56px;
-  border:none;
-  background:transparent;
-  cursor:pointer;
-  display:grid;
-  place-items:center;
-  color:var(--ink);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--stroke);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* ✅ Hamburger (3 garis tebal) */
 .hamburger{
-  width:36px;
-  height:26px;
-  position:relative;
-  display:block;
-}
-.hamburger::before,
-.hamburger::after,
-.hamburger{
-  background:transparent;
-}
-.hamburger::before,
-.hamburger::after{
-  content:"";
-  position:absolute;
-  left:0;
-  width:100%;
-  height:6px;
-  background:var(--ink);
-  border-radius:6px;
-  opacity:.8;
-}
-.hamburger::before{ top:0; }
-.hamburger::after{ bottom:0; }
-.hamburger{
-  border-top:6px solid var(--ink);
-  border-radius:6px;
-  opacity:.8;
+  width: 44px;
+  height: 34px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.content{
-  padding:28px 34px 60px;
+.hamburger .line{
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(107,107,122,.9);
+  display: block;
 }
+
+
+.brand{
+  font-size: 42px;
+  letter-spacing: 8px;
+  font-weight: 700;
+  color: rgba(107,107,122,.85);
+  user-select: none;
+}
+
+.address{
+  margin-left: auto;
+  font-size: 22px;
+  color: rgba(107,107,122,.8);
+  user-select: none;
+}
+
+/* =========================
+   Content
+   ========================= */
+.content{ padding: 36px; }
 
 .hello{
-  font-size:40px;
-  margin:8px 0 22px;
-  letter-spacing:.5px;
+  font-size: 56px;
+  font-weight: 500;
+  margin: 0 0 22px;
+  color: rgba(107,107,122,.9);
 }
 
+/* =========================
+   Cards Grid
+   ========================= */
 .grid{
-  display:grid;
+  display: grid;
   grid-template-columns: repeat(4, minmax(220px, 1fr));
-  gap:26px;
-  align-items:stretch;
+  gap: 26px;
+  align-items: stretch;
 }
 
+/* =========================
+   Card (SQUARE)
+   ========================= */
 .card{
   background: var(--card);
-  border:none;
-  border-radius:18px;
+  border: none;
+  border-radius: 18px;
   box-shadow: var(--shadow);
-  padding:18px;
-  text-align:left;
+  padding: 18px;
+  text-align: left;
+
   aspect-ratio: 1 / 1;
-  display:flex;
-  flex-direction:column;
+
+  display: flex;
+  flex-direction: column;
+
+  cursor: default;
 }
+
+button.card{ cursor: pointer; }
 
 .cardTop{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  color: var(--muted);
-  font-weight:800;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(122,139,148,.65);
+  font-weight: 800;
 }
 
-.cardIcon{ font-size:30px; opacity:.8; }
-.cardTitle{ font-size:20px; letter-spacing:.5px; }
+.cardIcon{
+  font-size: 26px;
+  opacity: .75;
+}
+
+.cardTitle{
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
 .cardValue{
-  flex: 1; 
+  flex: 1;
   display: grid;
-  place-items: center; 
-  text-align:center;
+  place-items: center;
+  text-align: center;
 
-  font-size:74px;
-  letter-spacing:2px;
+  font-size: 74px;
+  letter-spacing: 2px;
   color: var(--stroke);
-  font-weight:800;
+  font-weight: 800;
 
-  margin: 0;   
+  margin: 0;
   line-height: 1;
 }
 
 .pill{
-  width:140px;
-  margin: 0 auto 10px; 
-  background:#f5f5f7;
-  color:var(--muted);
-  border-radius:999px;
-  padding:8px 18px;
-  text-align:center;
-  font-weight:800;
-  box-shadow: 0 6px 12px rgba(0,0,0,.12);
+  width: 140px;
+  margin: 0 auto 10px;
+  background: #f5f5f7;
+  color: rgba(122,139,148,.85);
+  border-radius: 999px;
+  padding: 8px 18px;
+  text-align: center;
+  font-weight: 800;
+  box-shadow: 0 8px 14px rgba(0,0,0,.18);
 }
 
-.activeCard{
-  background:#5e7f8b;
-}
+.activeCard{ background: #5e7f8b; }
 .activeCard .cardTitle,
-.activeCard .cardIcon{ color:#dfeae1; }
-.activeCard .cardValue{ color:#a9bac1; }
+.activeCard .cardIcon{ color: rgba(233,242,238,.85); }
+.activeCard .cardValue{ color: rgba(180,200,206,.92); }
+
+/* =========================
+   Overlay / Modal / Sidebar
+   ========================= */
+.overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal{
+  width: min(520px, 92vw);
+  min-height: 420px;
+  background: #f2f2f6;
+  border-radius: 18px;
+  box-shadow: 0 18px 45px rgba(0,0,0,.25);
+  position: relative;
+  padding: 28px;
+}
+
+.modalClose{
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  border: none;
+  background: transparent;
+  font-size: 24px;
+  cursor: pointer;
+  color: rgba(122,139,148,.9);
+}
+
+/* =========================
+   Door Modal
+   ========================= */
+.doorModal{
+  width: min(520px, 92vw);
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+}
+
+.doorBig{
+  font-size: 78px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: rgba(122,139,148,.95);
+  text-shadow: 0 8px 12px rgba(0,0,0,.15);
+}
+
+.doorAction{
+  width: 220px;
+  height: 64px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  background: #6f95a3;
+  color: #eaf0ee;
+  font-weight: 800;
+  font-size: 28px;
+  box-shadow: 0 10px 18px rgba(0,0,0,.2);
+}
+
+/* =========================
+   Sidebar Drawer
+   ========================= */
+.sidebar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: min(360px, 85vw);
+  background: var(--topbar);
+  box-shadow: 18px 0 40px rgba(0,0,0,.25);
+  padding: 26px 22px;
+  z-index: 10000;
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.closeSide{
+  align-self: flex-end;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 22px;
+  color: rgba(107,107,122,.95);
+}
+
+.sideItem{
+  width: 100%;
+  text-align: left;
+  font-size: 44px;
+  letter-spacing: 1px;
+  color: rgba(107,107,122,.95);
+  border: none;
+  background: transparent;
+  padding: 16px 10px;
+  cursor: pointer;
+
+  border-top: 2px solid rgba(107,107,122,.65);
+  border-bottom: 2px solid rgba(107,107,122,.65);
+}
+
+.sideBottom{
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.gearBtn{
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  border: none;
+  background: transparent;
+  font-size: 40px;
+  cursor: pointer;
+  color: rgba(107,107,122,.95);
+}
+
+/* =========================
+   ✅ User Modal (Figma look)
+   ========================= */
+.userModal{
+  width: min(520px, 92vw);
+  min-height: 520px;
+  padding: 26px 26px 30px;
+}
+
+.userTop{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.userAvatar{
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #e9eef1;
+  display: grid;
+  place-items: center;
+  font-size: 26px;
+}
+
+.userNameRow{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.userName{
+  font-size: 44px;
+  font-weight: 800;
+  letter-spacing: .5px;
+  color: rgba(107,107,122,.9);
+}
+
+.userEdit{
+  font-size: 22px;
+  opacity: .8;
+}
+
+.userField{
+  margin-top: 16px;
+  color: rgba(107,107,122,.9);
+}
+
+.userLabelRow{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.userValue{
+  font-size: 18px;
+  margin-top: 2px;
+  color: rgba(122,139,148,.95);
+}
+
+.userLogout{
+  margin-top: 22px;
+  width: 180px;
+  height: 56px;
+  border: none;
+  border-radius: 14px;
+  background: #6f95a3;
+  color: #eef4f2;
+  font-size: 22px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 10px 18px rgba(0,0,0,.2);
+}
+
+/* =========================
+   ✅ Mode Modal (Figma look)
+   ========================= */
+.modeModal{
+  width: min(520px, 92vw);
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+}
+
+.modeTitle{
+  font-size: 64px;
+  font-weight: 900;
+  color: rgba(122,139,148,.95);
+  text-shadow: 0 10px 14px rgba(0,0,0,.25);
+}
+
+.modeLink{
+  font-size: 28px;
+  font-weight: 800;
+  color: rgba(107,107,122,.9);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* =========================
+   Responsive
+   ========================= */
+@media (max-width: 1100px){
+  .grid{ grid-template-columns: repeat(2, minmax(220px, 1fr)); }
+  .hello{ font-size: 44px; }
+  .brand{ font-size: 32px; letter-spacing: 6px; }
+}
+
+@media (max-width: 620px){
+  .topbar{ padding: 0 16px; height: 80px; }
+  .content{ padding: 18px; }
+  .grid{ grid-template-columns: 1fr; }
+  .address{ display: none; }
+}

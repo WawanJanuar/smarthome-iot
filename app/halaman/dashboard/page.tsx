@@ -55,7 +55,11 @@ export default function DashboardPage() {
           aria-label="Open menu"
           onClick={() => setSidebarOpen(true)}
         >
-          <span className="hamburger" />
+          <span className="hamburger">
+            <span className="line" />
+            <span className="line" />
+            <span className="line" />
+          </span>
         </button>
 
         <div className="brand">SMART HOME</div>
