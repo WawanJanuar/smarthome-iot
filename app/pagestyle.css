@@ -107,6 +107,24 @@ body {
   align-self: center;
 }
 
+.sign-btn {
+  margin-top: 10px;
+  height: 64px;
+  border-radius: 12px;
+  border: none;
+  background: #7a9dad;
+  color: #e9eef1;
+  font-size: 28px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.sign-btn:hover {
+  filter: brightness(0.98);
+}
+
 @media (max-width: 900px) {
   .card {
     grid-template-columns: 1fr;

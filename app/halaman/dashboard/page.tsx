@@ -1,8 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import "./dashboard.css";
-
+import { useEffect, useLayoutEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import UserModal from "./UserModal";
 import ModeModal from "./ModeModal";
@@ -16,7 +14,13 @@ export default function DashboardPage() {
   const [doorModalOpen, setDoorModalOpen] = useState(false);
   const [doorIsOpen, setDoorIsOpen] = useState(true);
 
-  
+  useLayoutEffect(() => {
+    try {
+      const saved = localStorage.getItem("theme");
+      document.body.classList.toggle("theme-dark", saved === "dark");
+    } catch {}
+  }, []);
+
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -55,7 +59,7 @@ export default function DashboardPage() {
           aria-label="Open menu"
           onClick={() => setSidebarOpen(true)}
         >
-          <span className="hamburger">
+          <span className="hamburger" aria-hidden="true">
             <span className="line" />
             <span className="line" />
             <span className="line" />
@@ -66,12 +70,10 @@ export default function DashboardPage() {
         <div className="address">Jl. Asia No. 138</div>
       </header>
 
-      {/* konten */}
       <section className="content">
         <h1 className="hello">Hello, steven Putera Wijaya Sok Asik</h1>
 
         <div className="grid">
-          {/* DOOR */}
           <button
             className={`card ${doorIsOpen ? "" : "activeCard"}`}
             onClick={() => setDoorModalOpen(true)}
@@ -83,7 +85,6 @@ export default function DashboardPage() {
             <div className="cardValue">{doorLabel}</div>
           </button>
 
-          {/* OBJECT */}
           <div className="card">
             <div className="cardTop">
               <div className="cardIcon">🚶‍♂️</div>
@@ -92,7 +93,6 @@ export default function DashboardPage() {
             <div className="cardValue">15 CM</div>
           </div>
 
-          {/* LED */}
           <div className="card">
             <div className="cardTop">
               <div className="cardIcon">💡</div>
@@ -101,7 +101,6 @@ export default function DashboardPage() {
             <div className="cardValue">ON</div>
           </div>
 
-          {/* ALARM */}
           <div className="card">
             <div className="cardTop">
               <div className="cardIcon">🔊</div>
@@ -110,7 +109,6 @@ export default function DashboardPage() {
             <div className="cardValue">ON</div>
           </div>
 
-          {/* TEMP */}
           <div className="card">
             <div className="cardTop">
               <div className="cardIcon">🌡️</div>
@@ -120,7 +118,6 @@ export default function DashboardPage() {
             <div className="pill">HOT</div>
           </div>
 
-          {/* HUMID */}
           <div className="card">
             <div className="cardTop">
               <div className="cardIcon">💧</div>
@@ -131,7 +128,6 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      {/* sidebar */}
       <Sidebar
         open={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
@@ -139,13 +135,9 @@ export default function DashboardPage() {
         onOpenPersonalize={openPersonalize}
       />
 
-      {/* usermodal */}
       <UserModal open={userModalOpen} onClose={() => setUserModalOpen(false)} />
-
-      {/* personalisasi */}
       <ModeModal open={modeModalOpen} onClose={() => setModeModalOpen(false)} />
 
-      {/* pintu */}
       <DoorModal
         open={doorModalOpen}
         onClose={() => setDoorModalOpen(false)}

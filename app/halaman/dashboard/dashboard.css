@@ -1,37 +1,67 @@
-/* =========================
-   Theme / Base
-   ========================= */
 :root{
   --bg: #f2f2f6;
   --topbar: #dfeae1;
-  --card: #d9eadc;
-  --stroke: #7a8b94;
-  --muted: rgba(122,139,148,.75);
-  --shadow: 0 14px 22px rgba(0,0,0,.18);
+  --text: #6b6b7a;
+  --muted: #9aa0aa;
+
+  --card: #d7e6da;
+  --stroke: #8ea7b1;
+
+  --panel: #f2f2f6; 
+  --panelText: rgba(107,107,122,.9);
+
+  --shadow: 0 10px 18px rgba(0,0,0,.12);
+  --shadowStrong: 0 18px 45px rgba(0,0,0,.25);
+
+  --overlay: rgba(0,0,0,.35);
+
+  --btn: #6f95a3;
+  --btnText: #eaf0ee;
+
+  --pillBg: #f5f5f7;
+  --pillText: rgba(122,139,148,.85);
+}
+
+body.theme-dark{
+  --bg: #3f455f;
+  --topbar: #2f3550;
+  --text: #e9e8ee;
+  --muted: rgba(233,232,238,.70);
+
+  --card: #2b3149;
+  --stroke: rgba(233,232,238,.28);
+
+  --panel: #2b3149;
+  --panelText: rgba(233,232,238,.92);
+
+  --shadow: 0 12px 20px rgba(0,0,0,.35);
+  --shadowStrong: 0 18px 45px rgba(0,0,0,.48);
+
+  --overlay: rgba(0,0,0,.55);
+
+  --btn: #d29a4f; 
+  --btnText: #2b3149;
+
+  --pillBg: rgba(233,232,238,.12);
+  --pillText: rgba(233,232,238,.85);
 }
 
 *{ box-sizing: border-box; }
 
-html, body{ height: 100%; }
-
 body{
   margin: 0;
   background: var(--bg);
-  color: var(--stroke);
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-/* =========================
-   Page Layout
-   ========================= */
+
 .dash{
   min-height: 100vh;
   background: var(--bg);
 }
 
-/* =========================
-   Topbar
-   ========================= */
+
 .topbar{
   height: 90px;
   background: var(--topbar);
@@ -49,15 +79,64 @@ body{
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
 }
 
-/* ✅ Hamburger (3 garis tebal) */
+/* ✅ HAMBURGER: support 2 versi */
+/* Versi A (kamu pakai sekarang): <span className="hamburger" /> */
 .hamburger{
   width: 44px;
   height: 34px;
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: space-between;
+  position: relative;
+  display: inline-block;
+}
+
+/* kalau tidak ada .line di dalamnya, kita gambar 3 garis pakai pseudo */
+.hamburger::before,
+.hamburger::after{
+  content:"";
+  position:absolute;
+  left: 0;
+  right: 0;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(107,107,122,.9);
+}
+.hamburger::before{ top: 2px; }
+.hamburger::after{ bottom: 2px; }
+
+/* garis tengah */
+.hamburger{
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 42%,
+      rgba(107,107,122,.9) 42%,
+      rgba(107,107,122,.9) 58%,
+      transparent 58%,
+      transparent 100%
+    );
+  border-radius: 999px;
+}
+
+/* Dark mode: garis hambuger ikut terang */
+body.theme-dark .hamburger,
+body.theme-dark .hamburger::before,
+body.theme-dark .hamburger::after{
+  background-color: rgba(233,232,238,.9);
+}
+body.theme-dark .hamburger{
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 42%,
+      rgba(233,232,238,.9) 42%,
+      rgba(233,232,238,.9) 58%,
+      transparent 58%,
+      transparent 100%
+    );
 }
 
 .hamburger .line{
@@ -66,6 +145,7 @@ body{
   background: rgba(107,107,122,.9);
   display: block;
 }
+body.theme-dark .hamburger .line{ background: rgba(233,232,238,.9); }
 
 
 .brand{
@@ -75,6 +155,9 @@ body{
   color: rgba(107,107,122,.85);
   user-select: none;
 }
+body.theme-dark .brand{
+  color: rgba(233,232,238,.88);
+}
 
 .address{
   margin-left: auto;
@@ -82,10 +165,10 @@ body{
   color: rgba(107,107,122,.8);
   user-select: none;
 }
+body.theme-dark .address{
+  color: rgba(233,232,238,.75);
+}
 
-/* =========================
-   Content
-   ========================= */
 .content{ padding: 36px; }
 
 .hello{
@@ -94,10 +177,10 @@ body{
   margin: 0 0 22px;
   color: rgba(107,107,122,.9);
 }
+body.theme-dark .hello{
+  color: rgba(233,232,238,.9);
+}
 
-/* =========================
-   Cards Grid
-   ========================= */
 .grid{
   display: grid;
   grid-template-columns: repeat(4, minmax(220px, 1fr));
@@ -105,12 +188,9 @@ body{
   align-items: stretch;
 }
 
-/* =========================
-   Card (SQUARE)
-   ========================= */
 .card{
   background: var(--card);
-  border: none;
+  border: 1px solid transparent;
   border-radius: 18px;
   box-shadow: var(--shadow);
   padding: 18px;
@@ -120,11 +200,16 @@ body{
 
   display: flex;
   flex-direction: column;
-
   cursor: default;
+  transition: transform .12s ease, box-shadow .12s ease;
 }
 
 button.card{ cursor: pointer; }
+
+button.card:hover{
+  transform: translateY(-2px);
+  box-shadow: var(--shadowStrong);
+}
 
 .cardTop{
   display: flex;
@@ -132,6 +217,9 @@ button.card{ cursor: pointer; }
   gap: 12px;
   color: rgba(122,139,148,.65);
   font-weight: 800;
+}
+body.theme-dark .cardTop{
+  color: rgba(233,232,238,.60);
 }
 
 .cardIcon{
@@ -162,8 +250,8 @@ button.card{ cursor: pointer; }
 .pill{
   width: 140px;
   margin: 0 auto 10px;
-  background: #f5f5f7;
-  color: rgba(122,139,148,.85);
+  background: var(--pillBg);
+  color: var(--pillText);
   border-radius: 999px;
   padding: 8px 18px;
   text-align: center;
@@ -171,18 +259,22 @@ button.card{ cursor: pointer; }
   box-shadow: 0 8px 14px rgba(0,0,0,.18);
 }
 
-.activeCard{ background: #5e7f8b; }
+
+.activeCard{
+  background: #5e7f8b;
+}
+body.theme-dark .activeCard{
+  background: #1f2438;
+  border: 1px solid rgba(233,232,238,.12);
+}
 .activeCard .cardTitle,
 .activeCard .cardIcon{ color: rgba(233,242,238,.85); }
 .activeCard .cardValue{ color: rgba(180,200,206,.92); }
 
-/* =========================
-   Overlay / Modal / Sidebar
-   ========================= */
 .overlay{
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.35);
+  background: var(--overlay);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -192,11 +284,16 @@ button.card{ cursor: pointer; }
 .modal{
   width: min(520px, 92vw);
   min-height: 420px;
-  background: #f2f2f6;
+  background: var(--panel);
+  color: var(--panelText);
   border-radius: 18px;
-  box-shadow: 0 18px 45px rgba(0,0,0,.25);
+  box-shadow: var(--shadowStrong);
   position: relative;
   padding: 28px;
+  border: 1px solid rgba(0,0,0,.06);
+}
+body.theme-dark .modal{
+  border: 1px solid rgba(233,232,238,.10);
 }
 
 .modalClose{
@@ -209,10 +306,11 @@ button.card{ cursor: pointer; }
   cursor: pointer;
   color: rgba(122,139,148,.9);
 }
+body.theme-dark .modalClose{
+  color: rgba(233,232,238,.75);
+}
 
-/* =========================
-   Door Modal
-   ========================= */
+
 .doorModal{
   width: min(520px, 92vw);
   min-height: 520px;
@@ -230,6 +328,10 @@ button.card{ cursor: pointer; }
   color: rgba(122,139,148,.95);
   text-shadow: 0 8px 12px rgba(0,0,0,.15);
 }
+body.theme-dark .doorBig{
+  color: rgba(233,232,238,.92);
+  text-shadow: 0 10px 16px rgba(0,0,0,.35);
+}
 
 .doorAction{
   width: 220px;
@@ -237,16 +339,14 @@ button.card{ cursor: pointer; }
   border-radius: 14px;
   border: none;
   cursor: pointer;
-  background: #6f95a3;
-  color: #eaf0ee;
+  background: var(--btn);
+  color: var(--btnText);
   font-weight: 800;
   font-size: 28px;
   box-shadow: 0 10px 18px rgba(0,0,0,.2);
 }
 
-/* =========================
-   Sidebar Drawer
-   ========================= */
+
 .sidebar{
   position: fixed;
   top: 0;
@@ -274,6 +374,9 @@ button.card{ cursor: pointer; }
   font-size: 22px;
   color: rgba(107,107,122,.95);
 }
+body.theme-dark .closeSide{
+  color: rgba(233,232,238,.85);
+}
 
 .sideItem{
   width: 100%;
@@ -288,6 +391,11 @@ button.card{ cursor: pointer; }
 
   border-top: 2px solid rgba(107,107,122,.65);
   border-bottom: 2px solid rgba(107,107,122,.65);
+}
+body.theme-dark .sideItem{
+  color: rgba(233,232,238,.88);
+  border-top: 2px solid rgba(233,232,238,.18);
+  border-bottom: 2px solid rgba(233,232,238,.18);
 }
 
 .sideBottom{
@@ -306,10 +414,10 @@ button.card{ cursor: pointer; }
   cursor: pointer;
   color: rgba(107,107,122,.95);
 }
+body.theme-dark .gearBtn{
+  color: rgba(233,232,238,.85);
+}
 
-/* =========================
-   ✅ User Modal (Figma look)
-   ========================= */
 .userModal{
   width: min(520px, 92vw);
   min-height: 520px;
@@ -327,10 +435,13 @@ button.card{ cursor: pointer; }
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: #e9eef1;
+  background: rgba(0,0,0,.06);
   display: grid;
   place-items: center;
   font-size: 26px;
+}
+body.theme-dark .userAvatar{
+  background: rgba(233,232,238,.12);
 }
 
 .userNameRow{
@@ -343,7 +454,7 @@ button.card{ cursor: pointer; }
   font-size: 44px;
   font-weight: 800;
   letter-spacing: .5px;
-  color: rgba(107,107,122,.9);
+  color: var(--panelText);
 }
 
 .userEdit{
@@ -353,7 +464,7 @@ button.card{ cursor: pointer; }
 
 .userField{
   margin-top: 16px;
-  color: rgba(107,107,122,.9);
+  color: var(--panelText);
 }
 
 .userLabelRow{
@@ -369,6 +480,9 @@ button.card{ cursor: pointer; }
   margin-top: 2px;
   color: rgba(122,139,148,.95);
 }
+body.theme-dark .userValue{
+  color: rgba(233,232,238,.78);
+}
 
 .userLogout{
   margin-top: 22px;
@@ -376,17 +490,14 @@ button.card{ cursor: pointer; }
   height: 56px;
   border: none;
   border-radius: 14px;
-  background: #6f95a3;
-  color: #eef4f2;
+  background: var(--btn);
+  color: var(--btnText);
   font-size: 22px;
   font-weight: 800;
   cursor: pointer;
   box-shadow: 0 10px 18px rgba(0,0,0,.2);
 }
 
-/* =========================
-   ✅ Mode Modal (Figma look)
-   ========================= */
 .modeModal{
   width: min(520px, 92vw);
   min-height: 520px;
@@ -395,6 +506,7 @@ button.card{ cursor: pointer; }
   justify-content: center;
   align-items: center;
   gap: 18px;
+  text-align: center;
 }
 
 .modeTitle{
@@ -403,18 +515,24 @@ button.card{ cursor: pointer; }
   color: rgba(122,139,148,.95);
   text-shadow: 0 10px 14px rgba(0,0,0,.25);
 }
+body.theme-dark .modeTitle{
+  color: rgba(233,232,238,.92);
+  text-shadow: 0 12px 18px rgba(0,0,0,.45);
+}
 
 .modeLink{
+  border: none;
+  background: transparent;
   font-size: 28px;
   font-weight: 800;
   color: rgba(107,107,122,.9);
   text-decoration: underline;
   cursor: pointer;
 }
+body.theme-dark .modeLink{
+  color: #d29a4f;
+}
 
-/* =========================
-   Responsive
-   ========================= */
 @media (max-width: 1100px){
   .grid{ grid-template-columns: repeat(2, minmax(220px, 1fr)); }
   .hello{ font-size: 44px; }

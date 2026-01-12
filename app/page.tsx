@@ -27,7 +27,9 @@ export default function Page() {
             <input type="email" placeholder="Email" />
             <input type="password" placeholder="Password" />
 
-            <button className="btn-outline small">Sign Up</button>
+            <Link href="halaman/dashboard" className="sign-btn">Sign Up</Link>
+
+            {/* <button className="btn-outline small">Sign Up</button> */}
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import "./loginstyle.css";
+import Link from "next/link";
 
 export default function LoginPage() {
   return (
@@ -16,12 +17,11 @@ export default function LoginPage() {
             placeholder="Password"
           />
 
-          <button className="login-btn" type="button">
-            Log In
-          </button>
+          <Link href="/halaman/dashboard" className="login-btn">Log In</Link>
+
 
           <p className="login-footer">
-            New User? <a href="#">Register</a>
+            New User? <Link href="/" className="regis">Register</Link>
           </p>
         </div>
       </section>
